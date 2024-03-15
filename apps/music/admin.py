@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from apps.music.models import Song, Artist, Genre, Album
+
+admin.site.register([Song, Album, Genre])
+
+
+@admin.register(Artist)
+class ArtistAdmin(admin.ModelAdmin):
+    fields = ['avatar', 'fullname']
+    list_display = ['fullname', 'avatar', 'followers', 'id']

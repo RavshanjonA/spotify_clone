@@ -1,3 +1,5 @@
+import uuid
+
 from django.utils import timezone
 
 
