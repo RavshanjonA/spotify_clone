@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('music', '0001_initial'),
+        ("music", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='artist',
-            name='id',
-            field=models.UUIDField(default='ca4ac3e029ad45e8ac3a7c2b32c0eba1', primary_key=True, serialize=False),
+            model_name="artist",
+            name="id",
+            field=models.UUIDField(
+                default="ca4ac3e029ad45e8ac3a7c2b32c0eba1",
+                primary_key=True,
+                serialize=False,
+            ),
         ),
     ]

@@ -1,22 +1,33 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import ImageField, URLField, OneToOneField, EmailField, DateField, TextChoices, CharField, \
-    ForeignKey, ManyToManyField, CASCADE
-from django.db.models.signals import post_save
+from django.db.models import (
+    ImageField,
+    OneToOneField,
+    EmailField,
+    DateField,
+    TextChoices,
+    CharField,
+    ForeignKey,
+    ManyToManyField,
+    CASCADE,
+)
 
 from apps.shared.models import AbstractModel
 from apps.user.managers import UserManager
 
 
 class UserGender(TextChoices):
-    MALE = 'M', 'male'
-    FEMALE = 'F', 'female'
+    MALE = "M", "male"
+    FEMALE = "F", "female"
 
 
 class User(AbstractUser):
-    avatar = ImageField(upload_to='user/%Y/%m/%d')
+    avatar = ImageField(upload_to="user/%Y/%m/%d")
     email = None
-    followings = ManyToManyField('self', symmetrical=False, related_name='followers', blank=True, null=True)
-    artist_following = ManyToManyField('music.Artist', 'users', null=True, blank=True)
+    followings = ManyToManyField("self", symmetrical=False, related_name="followers")
+    artist_following = ManyToManyField(
+        "music.Artist",
+        "users",
+    )
 
     EMAIL_FIELD = None
     REQUIRED_FIELDS = []
@@ -50,6 +61,6 @@ class UserProfile(AbstractModel):
 
 
 class Playlist(AbstractModel):
-    owner = ForeignKey('user.User', CASCADE)
+    owner = ForeignKey("user.User", CASCADE)
     title = CharField(max_length=128)
-    musics = ManyToManyField('music.Song')
+    musics = ManyToManyField("music.Song")

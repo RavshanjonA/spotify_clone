@@ -2,3 +2,5 @@ Django==5.0.3
 pillow==10.2.0
 psycopg2-binary==2.9.9
 python-dotenv==1.0.1
+djangorestframework-simplejwt==5.3.1
+black==24.3.0

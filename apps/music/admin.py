@@ -7,5 +7,5 @@ admin.site.register([Song, Album, Genre])
 
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
-    fields = ['avatar', 'fullname']
-    list_display = ['fullname', 'avatar', 'followers', 'id']
+    fields = ["avatar", "fullname"]
+    list_display = ["fullname", "avatar", "followers", "id"]

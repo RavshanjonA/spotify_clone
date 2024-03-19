@@ -19,7 +19,7 @@ class UserManager(BaseUserManager):
             self.model._meta.app_label, self.model._meta.object_name
         )
         username = GlobalUserModel.normalize_username(username)
-        user = self.model(username=username,  **extra_fields)
+        user = self.model(username=username, **extra_fields)
         user.password = make_password(password)
         user.save(using=self._db)
         return user
@@ -29,7 +29,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_superuser", False)
         return self._create_user(username, password, **extra_fields)
 
-    def create_superuser(self, username,  password=None, **extra_fields):
+    def create_superuser(self, username, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 
@@ -38,4 +38,4 @@ class UserManager(BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError("Superuser must have is_superuser=True.")
 
-        return self._create_user(username,  password, **extra_fields)
+        return self._create_user(username, password, **extra_fields)

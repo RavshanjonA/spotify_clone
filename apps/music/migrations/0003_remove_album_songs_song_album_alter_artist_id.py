@@ -7,23 +7,32 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('music', '0002_alter_artist_id'),
+        ("music", "0002_alter_artist_id"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='album',
-            name='songs',
+            model_name="album",
+            name="songs",
         ),
         migrations.AddField(
-            model_name='song',
-            name='album',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.DO_NOTHING, related_name='songs', to='music.album'),
+            model_name="song",
+            name="album",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                related_name="songs",
+                to="music.album",
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='artist',
-            name='id',
-            field=models.UUIDField(default='1e0b37e957e245219954261286bb8c24', primary_key=True, serialize=False),
+            model_name="artist",
+            name="id",
+            field=models.UUIDField(
+                default="1e0b37e957e245219954261286bb8c24",
+                primary_key=True,
+                serialize=False,
+            ),
         ),
     ]
