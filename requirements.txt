@@ -4,3 +4,5 @@ psycopg2-binary==2.9.9
 python-dotenv==1.0.1
 djangorestframework-simplejwt==5.3.1
 black==24.3.0
+drf-spectacular==0.27.1
+drf-spectacular-sidecar==2024.3.4
