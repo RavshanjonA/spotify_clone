@@ -8,7 +8,7 @@ from django.db.models import (
     CharField,
     ForeignKey,
     ManyToManyField,
-    CASCADE,
+    CASCADE, BooleanField,
 )
 
 from apps.shared.models import AbstractModel
@@ -28,7 +28,8 @@ class User(AbstractUser):
         "music.Artist",
         "users",
     )
-
+    is_active = BooleanField(default=False)
+    token = CharField(max_length=128)
     EMAIL_FIELD = None
     REQUIRED_FIELDS = []
     manager = UserManager()

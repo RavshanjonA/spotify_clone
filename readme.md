@@ -1,7 +1,4 @@
-### 1. UpdatePasswordByEmail emailni beradi pasword1,password2 orqali userni passwordni almashtiring.
-
-### 2. Song uchun 5 ta api_enpoint uchun test yozish.
-
-### 3. Artist uchun 5 ta api_endpoint uchun test yozish.
-
-### 4. Album uchun 5 ta api_endpoint uchun test yozish.
+### 1. ForgotPassword APIenpoint user emailini olib shunga unikal acticavtionlik generatsiya qilib yuborish kerak
+### 2. Link da apiviewga yonaltirib password1 va password2 qabul qilsin
+### 3. UserActivateView dagi email yuborishni celery va rabbitmq orqali bajarish
+### 4. Yuqoridagi 2 ta api endpoint uchun test yozish.

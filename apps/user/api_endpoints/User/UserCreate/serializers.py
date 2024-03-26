@@ -1,8 +1,18 @@
+import os
+
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from dotenv import load_dotenv
+
+load_dotenv()
+
+from django.core.mail import send_mail
 from rest_framework.exceptions import ValidationError
 from rest_framework.fields import EmailField, CharField, ImageField
 from rest_framework.serializers import ModelSerializer
 
 from apps.user.models import User
+from apps.user.utils import generate_token
 
 
 class UserCreateSerializer(ModelSerializer):
@@ -35,8 +45,15 @@ class UserCreateSerializer(ModelSerializer):
         user.set_password(password)
         user.save()
         user.userprofile.email = email
+        user.token = generate_token()
+        host_email = os.getenv("EMAIL_HOST_USER")
+        activation_link = f"http://localhost:8000/api/v1/user/user-activate/{user.token}"
+        message = render_to_string("activation_link.html",
+                                   {"email": user.userprofile.email, "activation_link": activation_link})
+        send_mail(subject="Activation Link", message=strip_tags(message),
+                  from_email=host_email, recipient_list=[user.userprofile.email])
         user.save()
-        validated_data["avatar"] = str(user.avatar.url)
+
         return validated_data
 
     class Meta:

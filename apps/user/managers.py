@@ -1,6 +1,7 @@
 from django.apps import apps
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
+from rest_framework.exceptions import APIException
 
 
 class UserManager(BaseUserManager):
@@ -39,3 +40,5 @@ class UserManager(BaseUserManager):
             raise ValueError("Superuser must have is_superuser=True.")
 
         return self._create_user(username, password, **extra_fields)
+
+
